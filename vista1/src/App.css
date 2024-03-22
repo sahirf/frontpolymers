@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-logo {
+  height: 80px;
+  width: 80px;
+  margin: 0 20px;
+}
+
+.App-header h1 {
+  color: white;
+  font-size: 24px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mix-polymers,
+.search-polymers,
+.find-polymers {
+  flex: 1 1 300px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.mix-polymers button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #282c34;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.search-polymers input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.search-polymers button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #282c34;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.find-polymers ul {
+  list-style: none;
+  padding: 0;
+}
+
+.find-polymers li {
+  margin-bottom: 10
+}
+.footer-container{
+  background-color: #dceeed;
+}
+

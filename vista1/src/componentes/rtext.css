@@ -1,0 +1,55 @@
+.componente1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mix-polymers,
+.search-polymers,
+.find-polymers {
+  flex: 1 1 300px;
+  margin: 10px 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 150px
+}
+.mix-polymers{
+  margin-bottom: 150px
+}
+
+
+.search-polymers {
+  /*width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;*/
+  flex: 1 1 300px;
+  margin: 10px 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 150px
+}
+
+
+
+.find-polymers ul {
+  list-style: none;
+  padding: 0;
+}
+
+.find-polymers li {
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.logo2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+ 

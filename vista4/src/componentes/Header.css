@@ -1,0 +1,29 @@
+.Mix {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .a{
+    color:#fff
+  }
+  .Search {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .Find {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #dce5ee;
+    margin: 0;
+    padding: 0;
+  }
+
+  
