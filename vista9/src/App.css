@@ -1,0 +1,61 @@
+.findbutton {
+  background-color: blue;
+  color: white;
+  padding: 1px 10px;
+  width: 2%;
+  z-index: 2;
+}
+
+.findbutton button {
+  border: 1px solid blue;
+  color: blue;
+}
+h3 {
+  font-family: 'Baskerville Neo Text';
+}
+.search-bar1 {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  width: 15%;
+  margin: 0 auto;
+  
+}
+.search-bar1 input {
+  border: none;
+  outline: none;
+  font-size: 30px;
+  width: 100%;
+  margin-right: 10px;
+  font-family: 'Baskerville Neo Text';
+  text-align: center;
+  
+}
+.search-bar2 {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  width: 6%;
+  margin: 0 auto;
+  
+}
+.search-bar2 input {
+  border: none;
+  outline: none;
+  font-size: 30px;
+  width: 100%;
+  margin-right: 10px;
+  font-family: 'Baskerville Neo Text';
+  text-align: center;
+  
+}
+h1{
+  font-family: 'Baskerville Neo Text';
+  text-align: center;
+}
