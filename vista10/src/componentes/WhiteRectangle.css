@@ -1,0 +1,64 @@
+.white-rectangle-container {
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    z-index: 2;
+  }
+  
+  .white-rectangle {
+    width: 20%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+  }
+  .white-rectangle-short{
+    width: 6%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+  }
+  
+  .left {
+    left: 0;
+    top: 300%;
+  }
+  
+  .center-left {
+    left: 37.35%;
+  }
+  
+  .center-right {
+    left: 70%;
+    top: 100%;
+  }
+  
+  .right {
+    right: 0;
+    top: 70;
+  }
+  
+  .bottom-left {
+    left: 70;
+    top: 0%;
+  }
+  
+  .bottom-right {
+    right: 0;
+    top: 70%;
+  }
+  .bottom-center-left{
+    right: 0;
+    top: 70%;
+  }
+  .bottom-center-right{
+    right: 0;
+    top: 70%;
+  }

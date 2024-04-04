@@ -1,0 +1,12 @@
+.findbutton {
+  background-color: blue;
+  color: white;
+  padding: 1px 10px;
+  width: 2%;
+  z-index: 2;
+}
+
+.findbutton button {
+  border: 1px solid blue;
+  color: blue;
+}
