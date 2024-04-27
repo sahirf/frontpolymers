@@ -5,12 +5,11 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
-
-export default function Navbar() {
+export default function Navbar_() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header >
+    <div >
       <nav className="mx-auto flex w-screen items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
@@ -91,6 +90,6 @@ export default function Navbar() {
           </div>
         </Dialog.Panel>
       </Dialog>
-    </header>
+    </div>
   )
 }
