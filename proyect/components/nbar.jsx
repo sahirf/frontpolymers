@@ -56,7 +56,7 @@ export default function Navbar_() {
             </a>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-white"
+              className="-m-2.5 rounded-md p-2.5 text-neutral-600"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
