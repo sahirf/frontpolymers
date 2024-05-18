@@ -7,10 +7,11 @@ class MultipleChoice extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            inputs: ['input-0', 'input-1']
+            inputs: ['input-0', 'input-1'],
+            response: null,
+            showModal: false 
         };
-        this.apiUrl = '51.222.143.27:5000';
-        this.testUrl = 'http://127.0.0.1:5000';
+        this.apiUrl = 'http://51.222.143.27:5000';
     }
 
     render() {
@@ -27,11 +28,17 @@ class MultipleChoice extends Component {
                                 <FormInput key={input} isLast={index === this.state.inputs.length - 1} />
                             ))}
                         </div>
-                        <button type="submit" className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit</button>
+                        <button type="submit" onClick={this.toggleModal} className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit</button>
                     </div>
                 </form>
+                {this.state.response && (
+                    <p className="ml-8 mt-2 text-green-600">{this.state.response}</p>
+                )}
             </>
         );
+    }
+    toggleModal = () => {
+        this.setState(prevState => ({ showModal: !prevState.showModal }));
     }
 
     handleAddInput = () => {
@@ -83,13 +90,15 @@ class MultipleChoice extends Component {
             }
     
             // Envía la solicitud POST con formData
-            const response = await axios.post(`${this.testUrl}/submit`, formData, {
+            const response = await axios.post(`${this.apiUrl}/mix`, formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-    
-            console.log(response.data);
+            this.setState({
+                response: response.data,
+                redirectTo: "/mix_polymers/response" // Redirecciona a la URL deseada
+            });
             // Reset form if needed
             e.target.reset();
         } catch (error) {
