@@ -115,7 +115,13 @@ function FormInput({ isLast }) {
                 <div className="flex items-center rounded-md shadow-sm gap-3 ">
                     <div className="grid grid-flow-col-3 md:grid-flow-row ">
                         <label htmlFor="material" className="text-sm font-semibold leading-6 text-neutral-400 ">Insert material</label>
-                        <input className="appearance-none block w-full md:w-72 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" name="material" type="text" placeholder="Insert material" />
+                        <select name="material" className="appearance-none block w-full md:w-72 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                            <option value="">Selecciona un material</option>
+                            <option value="material1">Material 1</option>
+                            <option value="material2">Material 2</option>
+                            <option value="material3">Material 3</option>
+                            {/* Agrega más opciones según sea necesario */}
+                        </select>
                     </div>
                     <div className="grid-flow-col-3 ml-2">
                         <label htmlFor="percentage" className="text-sm font-semibold leading-6  text-neutral-400">Insert percentage</label>
