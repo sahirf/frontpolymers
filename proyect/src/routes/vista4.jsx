@@ -2,6 +2,7 @@ import FondoAzul from "../../components/backg";
 import Navbar_ from "../../components/nbar";
 import MultipleChoice from "../../components/multipleForm";
 import axios from 'axios';
+import React, { useState } from 'react';
 
 export default function Vista4() {
     const [searchResults, setSearchResults] = useState([]);
@@ -74,6 +75,3 @@ export default function Vista4() {
 
     )
 }
-
-
-/*hola */

@@ -7,34 +7,33 @@ class MultipleChoice extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            inputs: ['input-0', 'input-1'],
-            response: null,
-            errorMessage: null,
-            showModal: false,
-            polymers: [],
-            isLoading: false,
-            modalContent: "" 
+            inputs: ['input-0', 'input-1']
         };
-        this.apiUrl = 'http://51.222.143.27:5000';
+        this.apiUrl = '51.222.143.27:5000';
+        this.testUrl = 'http://127.0.0.1:5000';
     }
 
-    componentDidMount() {
-        this.fetchPolymers();
+    render() {
+        return (
+            <>
+                <div className="grid md:grid-cols-2 sm:grid-cols-1 ml-8 mt-2 gap-4 md:w-80 sm:w-56 ">
+                    <button onClick={this.handleAddInput} className="relative bg-blue-500 hover:bg-blue-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length >= 5}>Add Input</button>
+                    <button onClick={this.handleRemoveInput} className="relative bg-red-500 hover:bg-red-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length <= 2}>Remove Input</button>
+                </div>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="w-11/12 ml-8">
+                        <div id="dynamicInput">
+                            {this.state.inputs.map((input, index) => (
+                                <FormInput key={input} isLast={index === this.state.inputs.length - 1} />
+                            ))}
+                        </div>
+                        <button type="submit" className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit</button>
+                    </div>
+                </form>
+            </>
+        );
     }
 
-    fetchPolymers = async () => {
-        try {
-            const response = await axios.get(`${this.apiUrl}/all-polymers`);
-            this.setState({ polymers: response.data });
-        } catch (error) {
-            console.error('Error fetching polymers:', error);
-        }
-    }
-
-    toggleModal = () => {
-        this.setState(prevState => ({ showModal: !prevState.showModal }));
-    }
-    
     handleAddInput = () => {
         if (this.state.inputs.length < 5) {
             this.appendInputs(1);
@@ -58,129 +57,60 @@ class MultipleChoice extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        this.setState({ response: null, errorMessage: null, showModal: true });
-        const formData = {
-            materials: [],
-            percentages: []
-        };
-        const formElements = e.target.elements;
-
-        for (let element of formElements) {
-            if (element.name === "material" && element.value.trim() !== "") {
-                formData.materials.push(parseInt(element.value, 10));
-            }
-            if (element.name === "percentage" && element.value.trim() !== "") {
-                formData.percentages.push(parseInt(element.value, 10));
-            }
-        }
-        
-        if (formData.materials.length < 2 || formData.materials.length > 5 || formData.percentages.length < 2 || formData.percentages.length > 5) {
-            this.setState({ errorMessage: "Debe haber entre 2 y 5 materiales y porcentajes deben sumar 100%" });
-            return;
-        }
-        
-        const totalPercentage = this.sumPercentages(formData.percentages);
-        if (totalPercentage !== 100) {
-            this.setState({ errorMessage: "La suma de los porcentajes debe ser igual a 100" });
-            return;
-        }
-        this.setState({ isLoading: true });
+    
         try {
-            const response = await axios.post(`${this.apiUrl}/mix`, formData, {
+            const formData = {
+                materials: [],
+                percentages: []
+            };
+            const formElements = e.target.elements;
+    
+            // Itera sobre los elementos del formulario
+            for (let element of formElements) {
+                // Verifica si el elemento tiene el nombre "material" y agrega su valor al array materials
+                if (element.name === "material" && element.value.trim() !== "") {
+                    formData.materials.push(element.value);
+                }
+                // Verifica si el elemento tiene el nombre "percentage" y agrega su valor al array percentages
+                if (element.name === "percentage" && element.value.trim() !== "") {
+                    formData.percentages.push(element.value);
+                }
+            }
+    
+            // Verifica si hay al menos 2 materiales y 2 porcentajes
+            if (formData.materials.length < 2 || formData.materials.length > 5 || formData.percentages.length < 2 || formData.percentages.length > 5) {
+                throw new Error("Debe haber entre 2 y 5 materiales y porcentajes");
+            }
+    
+            // Envía la solicitud POST con formData
+            const response = await axios.post(`${this.testUrl}/submit`, formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            this.setState({
-                response: response.data,
-                errorMessage: null,
-                isLoading: false,
-            });
+    
+            console.log(response.data);
+            // Reset form if needed
             e.target.reset();
         } catch (error) {
             console.error('Error:', error);
-            this.setState({ isLoading: false, errorMessage: "Ocurrió un error al procesar la solicitud." });
         }
     }
-    
-    sumPercentages = (percentages) => {
-        return percentages.reduce((total, sum) => total + sum, 0);
-    }
-        
-    render() {
-        return (
-            <>
-                <div className="grid md:grid-cols-2 sm:grid-cols-1 ml-8 mt-2 gap-4 md:w-80 sm:w-56">
-                    <button onClick={this.handleAddInput} className="relative bg-blue-500 hover:bg-blue-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length >= 5}>Add Input</button>
-                    <button onClick={this.handleRemoveInput} className="relative bg-red-500 hover:bg-red-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length <= 2}>Remove Input</button>
-                </div>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="w-11/12 ml-8">
-                        <div id="dynamicInput">
-                            {this.state.inputs.map((input, index) => (
-                                <FormInput key={input} isLast={index === this.state.inputs.length - 1} polymers={this.state.polymers} />
-                            ))}
-                        </div>
-                        <button type="submit" className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit</button>
-                    </div>
-                </form>
-                {this.state.showModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
-                    <article className="bg-white p-8 rounded w-4/5 max-w-screen-lg mx-4 overflow-auto max-h-screen">
-                        {this.state.isLoading ? (
-                            <div className="flex justify-center items-center">
-                                <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" role="status">
-                                    <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
-                                </div>
-                            </div>
-                        ) : (
-                            <>
-                                <p>{this.state.response}</p>
-                                <h2 className="ml-2 mt-1 text-red-600 font-extrabold">{this.state.errorMessage}</h2>
-                            </>
-                        )}
-                        <div className="flex justify-end">
-                            <button onClick={this.toggleModal} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
-                        </div>
-                    </article>
-                </div>
-            )}
-            </>
-        );
-    }
+  
 }
 
-function FormInput({ isLast, polymers }) {
+function FormInput({ isLast }) {
     return (
         <>
-            <div className="relative mt-2 ml-3 flex flex-wrap">  
-                <div className="flex items-center rounded-md shadow-sm gap-3 w-full">
-                    <div className="grid grid-flow-col-3 md:grid-flow-row">
-                        <label htmlFor="material" className="text-sm font-semibold leading-6 text-neutral-400">
-                        Insert material
-                        </label>
-                        <select
-                        name="material"
-                        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight mr-4"
-                        >
-                        <option value="">Selecciona un material</option>
-                        {polymers.map(([value, label]) => (
-                            <option key={value} value={value}>
-                            {label}
-                            </option>
-                        ))}
-                        </select>
+            <div className="relative mt-2 ml-3 grid grid-cols-2  lg:grid-cols-5">
+                <div className="flex items-center rounded-md shadow-sm gap-3 ">
+                    <div className="grid grid-flow-col-3 md:grid-flow-row ">
+                        <label htmlFor="material" className="text-sm font-semibold leading-6 text-neutral-400 ">Insert material</label>
+                        <input className="appearance-none block w-full md:w-72 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" name="material" type="text" placeholder="Insert material" />
                     </div>
                     <div className="grid-flow-col-3 ml-2">
-                        <label htmlFor="percentage" className="text-sm font-semibold leading-6 text-neutral-400">
-                        Insert percentage
-                        </label>
-                        <input
-                        type="number"
-                        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mr-4"
-                        name="percentage"
-                        placeholder="Insert percentage"
-                        />
+                        <label htmlFor="percentage" className="text-sm font-semibold leading-6  text-neutral-400">Insert percentage</label>
+                        <input type="number" className="appearance-none block w-full md:w-44  bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" name="percentage" placeholder="Insert percentage" />
                     </div>
                 </div>
             </div>
@@ -190,8 +120,7 @@ function FormInput({ isLast, polymers }) {
 }
 
 FormInput.propTypes = {
-    isLast: PropTypes.bool.isRequired,
-    polymers: PropTypes.array.isRequired
+    isLast: PropTypes.bool.isRequired // Validate that isLast is a required boolean
 };
 
 export default MultipleChoice;
