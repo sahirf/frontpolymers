@@ -12,8 +12,7 @@ export default function Vista5() {
     try {
       const response = await axios.post(`http://51.222.143.27:5000/mix`, { data: inputValue }, {
         headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
+          'Content-Type': 'application/json'
         }
       });
       

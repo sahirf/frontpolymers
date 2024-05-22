@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Vista1 from './routes/vista1'
 import Vista2 from './routes/mix_polymers'
-import Vista5 from './routes/vista5'
+import Vista5 from './routes/search_polymers'
 
 const router = createBrowserRouter([
   {
