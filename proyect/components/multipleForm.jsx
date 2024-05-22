@@ -110,7 +110,7 @@ class MultipleChoice extends Component {
     render() {
         return (
             <>
-                <div className="grid md:grid-cols-2 sm:grid-cols-1 ml-8 mt-2 gap-4 md:w-80 sm:w-56 ">
+                <div className="grid md:grid-cols-2 sm:grid-cols-1 ml-8 mt-2 gap-4 md:w-80 sm:w-56">
                     <button onClick={this.handleAddInput} className="relative bg-blue-500 hover:bg-blue-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length >= 5}>Add Input</button>
                     <button onClick={this.handleRemoveInput} className="relative bg-red-500 hover:bg-red-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length <= 2}>Remove Input</button>
                 </div>
@@ -153,20 +153,34 @@ class MultipleChoice extends Component {
 function FormInput({ isLast, polymers }) {
     return (
         <>
-            <div className="relative mt-2 ml-3 grid grid-cols-2 lg:grid-cols-5">
-                <div className="flex items-center rounded-md shadow-sm gap-3">
+            <div className="relative mt-2 ml-3 flex flex-wrap">  
+                <div className="flex items-center rounded-md shadow-sm gap-3 w-full">
                     <div className="grid grid-flow-col-3 md:grid-flow-row">
-                        <label htmlFor="material" className="text-sm font-semibold leading-6 text-neutral-400">Insert material</label>
-                        <select name="material" className="appearance-none block w-full md:w-72 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight">
-                            <option value="">Selecciona un material</option>
-                            {polymers.map(([value, label]) => (
-                                <option key={value} value={value}>{label}</option>
-                            ))}
+                        <label htmlFor="material" className="text-sm font-semibold leading-6 text-neutral-400">
+                        Insert material
+                        </label>
+                        <select
+                        name="material"
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight mr-4"
+                        >
+                        <option value="">Selecciona un material</option>
+                        {polymers.map(([value, label]) => (
+                            <option key={value} value={value}>
+                            {label}
+                            </option>
+                        ))}
                         </select>
                     </div>
                     <div className="grid-flow-col-3 ml-2">
-                        <label htmlFor="percentage" className="text-sm font-semibold leading-6 text-neutral-400">Insert percentage</label>
-                        <input type="number" className="appearance-none block w-full md:w-44 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" name="percentage" placeholder="Insert percentage" />
+                        <label htmlFor="percentage" className="text-sm font-semibold leading-6 text-neutral-400">
+                        Insert percentage
+                        </label>
+                        <input
+                        type="number"
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mr-4"
+                        name="percentage"
+                        placeholder="Insert percentage"
+                        />
                     </div>
                 </div>
             </div>
@@ -181,4 +195,3 @@ FormInput.propTypes = {
 };
 
 export default MultipleChoice;
-

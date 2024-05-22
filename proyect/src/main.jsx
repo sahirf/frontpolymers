@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Vista1 from './routes/vista1'
-import Vista2 from './routes/vista2'
+import Vista2 from './routes/mix_polymers'
 import Vista5 from './routes/vista5'
 
 const router = createBrowserRouter([
