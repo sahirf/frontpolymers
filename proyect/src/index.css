@@ -1,3 +1,16 @@
 @tailwind base;
+ul {
+    list-style:disc; /* Quitar viñetas predeterminadas */
+    padding: 0;
+  }
+  
+  li {
+    padding: 0.5rem;
+    margin-left: 2.5rem;
+    margin-bottom: 0.5rem;
+    
+  }
+  
+
 @tailwind components;
 @tailwind utilities;

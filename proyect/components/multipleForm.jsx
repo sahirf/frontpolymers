@@ -13,7 +13,6 @@ class MultipleChoice extends Component {
             showModal: false,
             polymers: [],
             isLoading: false,
-            modalContent: "" 
         };
         this.apiUrl = 'http://51.222.143.27:5000';
     }
@@ -126,7 +125,7 @@ class MultipleChoice extends Component {
                 </form>
                 {this.state.showModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
-                    <article className="bg-white p-8 rounded w-4/5 max-w-screen-lg mx-4 overflow-auto max-h-screen">
+                    <article className="bg-white p-8 rounded w-4/5 max-w-screen-lg mx-4 overflow-auto max-h-screen modal-content">
                         {this.state.isLoading ? (
                             <div className="flex justify-center items-center">
                                 <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" role="status">
@@ -135,7 +134,7 @@ class MultipleChoice extends Component {
                             </div>
                         ) : (
                             <>
-                                <p>{this.state.response}</p>
+                                <div dangerouslySetInnerHTML={{ __html: this.state.response }} />
                                 <h2 className="ml-2 mt-1 text-red-600 font-extrabold">{this.state.errorMessage}</h2>
                             </>
                         )}
