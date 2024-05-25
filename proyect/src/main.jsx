@@ -8,6 +8,7 @@ import {
 import Vista1 from './routes/vista1'
 import Vista2 from './routes/mix_polymers'
 import Vista5 from './routes/search_polymers'
+import Vista4 from './routes/suggest_polymers';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
     path: "/search_polymers",
     element: <Vista5 />,
   },
- 
+  {
+    path: "/suggest_polymers",
+    element: <Vista4 />,
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
