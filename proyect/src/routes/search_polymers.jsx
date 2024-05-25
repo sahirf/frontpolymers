@@ -27,6 +27,7 @@ export default function Vista5() {
   };
 
   return (
+    
     <div className="min-h-screen">
       <FondoAzul />
       <Navbar_ />

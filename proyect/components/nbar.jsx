@@ -38,6 +38,9 @@ export default function Navbar_() {
           <Link to="/mix_polymers" className="text-sm font-semibold leading-6 text-white">
             Find Polymers
           </Link>
+          <Link to="/suggest_polymers" className="text-sm font-semibold leading-6 text-white">
+            Suggest Polymers
+          </Link>
         </Popover.Group>
       </nav>
       {/* AQUI EMPIEZA VISTA DE CELULAR  */}
@@ -84,6 +87,12 @@ export default function Navbar_() {
                   className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Find Polymers
+                </Link>
+                <Link
+                  to="/suggest_polymers"
+                  className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Suggest polymers
                 </Link>
               </div>
               
