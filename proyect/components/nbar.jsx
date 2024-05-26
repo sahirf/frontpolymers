@@ -35,9 +35,6 @@ export default function Navbar_() {
           <Link to="/search_polymers" className="text-sm font-semibold leading-6 text-white">
             Seach For Polymers
           </Link>
-          <Link to="/mix_polymers" className="text-sm font-semibold leading-6 text-white">
-            Find Polymers
-          </Link>
           <Link to="/suggest_polymers" className="text-sm font-semibold leading-6 text-white">
             Suggest Polymers
           </Link>
@@ -81,12 +78,6 @@ export default function Navbar_() {
                   className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Seach For Polymers
-                </Link>
-                <Link
-                  to="/mix_polymers"
-                  className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Find Polymers
                 </Link>
                 <Link
                   to="/suggest_polymers"
