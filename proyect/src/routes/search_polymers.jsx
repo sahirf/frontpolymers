@@ -3,7 +3,6 @@ import axios from 'axios';
 import FondoAzul from "../../components/backg";
 import Navbar_ from "../../components/nbar";
 import Search from "../../components/search";
-import Footer from "../../components/footer";
 
 
 class Vista5 extends Component {
@@ -160,7 +159,6 @@ class Vista5 extends Component {
           )}
         </section>
       </div>
-      <Footer/>
       </>
     );
   }

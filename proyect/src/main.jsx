@@ -9,6 +9,7 @@ import Vista1 from './routes/vista1'
 import Vista2 from './routes/mix_polymers'
 import Vista5 from './routes/search_polymers'
 import Vista4 from './routes/suggest_polymers';
+import About from './routes/about';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/suggest_polymers",
     element: <Vista4 />,
+  },
+  {
+    path: "/about",
+    element: <About />,
   },
 
 ]);

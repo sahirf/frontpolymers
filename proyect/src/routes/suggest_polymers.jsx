@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import FondoAzul from "../../components/backg";
 import Navbar_ from "../../components/nbar";
-import Footer from "../../components/footer";
 import axios from 'axios';
 
 class Vista4 extends Component {
@@ -52,10 +51,12 @@ class Vista4 extends Component {
         <FondoAzul />
         <Navbar_ />
         <section>
-          <h1 className="text-white font-bold text-center text-2xl mt-2">Suggest polymers</h1>
-          <form onSubmit={this.handleSubmit} className="mx-auto max-w-lg">
+          <h1 className="text-white font-bold text-center text-2xl mt-2">Sugerencia de Polímeros</h1>
+          <form onSubmit={this.handleSubmit} className="mx-auto max-w-lg mt-5">
+            <label htmlFor="input" className="text-white">Escribe lo que desees crear:</label>
             <input 
-              type="text" 
+              type="text"
+              name= "input" 
               value={this.state.inputValue} 
               onChange={this.handleInputChange}
               className="mt-4 w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
@@ -63,7 +64,7 @@ class Vista4 extends Component {
             <input 
               type="submit" 
               className="py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
-              value="Submit" 
+              value="Enviar" 
               disabled={this.state.loading}
             />
           </form>
@@ -83,14 +84,13 @@ class Vista4 extends Component {
                   </>
                 )}
                 <div className="flex justify-end">
-                  <button onClick={this.toggleModal} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+                  <button onClick={this.toggleModal} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Cerrar</button>
                 </div>
               </article>
             </div>
           )}
         </section>
       </div>
-      <Footer/>
     </>
     );
   }

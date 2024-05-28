@@ -39,6 +39,9 @@ export default function Navbar_() {
           <Link to="/suggest_polymers" className="text-sm font-semibold leading-6 text-white">
             Sugerencia de Polímeros
           </Link>
+          <Link to="/about" className="text-sm font-semibold leading-6 text-white">
+            Acerca de
+          </Link>
         </Popover.Group>
       </nav>
       {/* AQUI EMPIEZA VISTA DE CELULAR  */}
@@ -86,6 +89,9 @@ export default function Navbar_() {
                 >
                   Sugerencia de Polímeros
                 </Link>
+                <Link to="/about" className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+            Acerca de
+          </Link>
               </div>
 
             </div>
