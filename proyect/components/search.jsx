@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
+import "../src/App.css"
 
 class Search extends Component {
   constructor(props) {
@@ -11,25 +12,48 @@ class Search extends Component {
       loading: false,
       responseMessage: '',
       errorMessage: '',
-      polymers: [[0, "Polymer1", "Type1"], [1, "Polymer2", "Type2"]] // Ejemplo de polímeros
+      polymers: [],
+      polymerName: ''
     };
   }
+
+  componentDidMount() {
+    this.fetchPolymers();
+  }
+
+  fetchPolymers = async () => {
+    try {
+      const response = await axios.get('http://51.222.143.27:5000/all-polymers');
+      this.setState({ polymers: response.data });
+    } catch (error) {
+      console.error('Error fetching polymers:', error);
+    }
+  };
 
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (this.match_api()) {
-      this.setState({ showModal: true, loading: true });
+    const match = this.match_api();
+    if (match) {
+      const id = match[0];
+      const name = match[1];
+      this.setState({ showModal: true, loading: true, polymerName: name });
 
       try {
-        const id = this.getPolymerId();
-
         // Llamar al primer endpoint
         const response1 = await axios.get(`http://51.222.143.27:5000/properties-from-polymer_id:${id}`, {
           headers: { 'Content-Type': 'application/json' }
         });
 
         const properties = response1.data;
+
+        const response4 = await axios.get(`http://51.222.143.27:5000/usage-from-polymer_id:${id}`);
+        let uses = response4.data;
+        const response5 = await axios.get (`http://51.222.143.27:5000/description-from-polymer_id:${id}`)
+        let description = response5.data
+
+        // Formatear los usos para que se vean bien
+        uses = uses.split('-').map(item => item.trim()).filter(item => item).map(item => `<p>- ${item}</p>`).join('');
 
         // Llamar a los otros dos endpoints para verificar el tipo de polímero
         const response2 = await axios.get('http://51.222.143.27:5000/polymers-from-type_id:2');
@@ -39,24 +63,29 @@ class Search extends Component {
         const typeData3 = response3.data;
 
         let types = '';
-        if (typeData2.some(polymer => polymer.id === id)) {
-          types = `<h1>Tipos</h1><ul><li><strong>Por temperatura</strong></li><li><strong>Termoplásticos</strong></li><li>de Ingenieria</li></ul>`;
-        } else if (typeData3.some(polymer => polymer.id === id)) {
-          types = `<h1>Tipos</h1><ul><li><strong>Por temperatura</strong></li><li><strong>Termoplásticos</strong></li><li>comunes</li></ul>`;
+        if (typeData2.some(polymer => polymer[0] === id)) {
+          types = `<h2><strong>Tipos</strong></h2><ul><li>Por temperatura</li><li id =one>Termoplásticos</li><li id =two>de Ingeniería</li></ul>`;
+        } else if (typeData3.some(polymer => polymer[0] === id)) {
+          types = `<h2><strong>Tipos</strong></h2><ul><li>Por temperatura</li><li id=one>Termoplásticos</li><li id =two>comunes</li></ul>`;
         }
 
         this.setState({
           responseMessage: `
-            <h1>Propiedades</h1>
+            <h1><strong><em><font size=5>${name}</font></em></strong></h1>
+            <hr>
+            ${description}
+            <h2><strong>Propiedades</strong></h2>
             <ul>
               <li>Densidad: ${properties.densidad}</li>
-              <li>ID de polímero: ${properties['id de polímero']}</li>
               <li>Módulo de tracción: ${properties['módulo de tracción']}</li>
               <li>Resistencia al impacto: ${properties['resistencia al impacto']}</li>
               <li>Resistencia de tracción: ${properties['resistencia de tracción']}</li>
               <li>Índice de flujo: ${properties['índice de flujo']}</li>
             </ul>
             ${types}
+            <h2><strong>Usos</strong></h2>
+            ${uses}
+            <h2><strong>Usos</strong></h2>
           `,
           loading: false,
           errorMessage: ''
@@ -69,7 +98,7 @@ class Search extends Component {
         console.error('Error fetching data:', error);
       }
     } else {
-      this.setState({ errorMessage: 'Digite un polímero valido' });
+      this.setState({ errorMessage: 'Digite un polímero válido' });
     }
   };
 
@@ -81,20 +110,11 @@ class Search extends Component {
     const { inputValue, polymers } = this.state;
     const lowerInput = inputValue.toLowerCase();
 
-    return polymers.some(polymer =>
-      polymer[1].toLowerCase() === lowerInput || polymer[2].toLowerCase() === lowerInput
-    );
-  };
-
-  getPolymerId = () => {
-    const { inputValue, polymers } = this.state;
-    const lowerInput = inputValue.toLowerCase();
-
-    const polymer = polymers.find(polymer =>
+    const match = polymers.find(polymer =>
       polymer[1].toLowerCase() === lowerInput || polymer[2].toLowerCase() === lowerInput
     );
 
-    return polymer ? polymer[0] : null;
+    return match || null;
   };
 
   toggleModal = () => {
@@ -105,7 +125,7 @@ class Search extends Component {
     const { inputValue, showModal, loading, responseMessage, errorMessage } = this.state;
     return (
       <>
-        <h1 className="text-white font-bold text-center text-2xl mt-2">Search polymers</h1>
+        <h1 className="text-white font-bold text-center text-2xl mt-2">Busqueda de Polímeros</h1>
         <form onSubmit={this.handleSubmit} className="mx-auto max-w-lg">
           <input
             type="text"
@@ -135,7 +155,7 @@ class Search extends Component {
                 </>
               )}
               <div className="flex justify-end">
-                <button onClick={this.toggleModal} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+                <button onClick={this.toggleModal} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Cerrar</button>
               </div>
             </article>
           </div>

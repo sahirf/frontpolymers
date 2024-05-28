@@ -109,9 +109,9 @@ class MultipleChoice extends Component {
     render() {
         return (
             <>
-                <div className="grid md:grid-cols-2 sm:grid-cols-1 ml-8 mt-2 gap-4 md:w-80 sm:w-56">
-                    <button onClick={this.handleAddInput} className="relative bg-blue-500 hover:bg-blue-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length >= 5}>Add Input</button>
-                    <button onClick={this.handleRemoveInput} className="relative bg-red-500 hover:bg-red-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length <= 2}>Remove Input</button>
+                <div className="grid md:grid-cols-2 sm:grid-cols-1 ml-8 mt-2 gap-4 md:w-96 sm:w-56">
+                    <button onClick={this.handleAddInput} className="relative bg-blue-500 hover:bg-blue-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length >= 5}>Agregar material</button>
+                    <button onClick={this.handleRemoveInput} className="relative bg-red-500 hover:bg-red-700 text-white font-bold h-11 py-2 px-4 rounded" disabled={this.state.inputs.length <= 2}>Quitar material</button>
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="w-11/12 ml-8">
@@ -120,7 +120,7 @@ class MultipleChoice extends Component {
                                 <FormInput key={input} isLast={index === this.state.inputs.length - 1} polymers={this.state.polymers} />
                             ))}
                         </div>
-                        <button type="submit" className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit</button>
+                        <button type="submit" className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Enviar</button>
                     </div>
                 </form>
                 {this.state.showModal && (
@@ -139,7 +139,7 @@ class MultipleChoice extends Component {
                             </>
                         )}
                         <div className="flex justify-end">
-                            <button onClick={this.toggleModal} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+                            <button onClick={this.toggleModal} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Cerrar</button>
                         </div>
                     </article>
                 </div>
@@ -156,7 +156,7 @@ function FormInput({ isLast, polymers }) {
                 <div className="flex items-center rounded-md shadow-sm gap-3 w-full">
                     <div className="grid grid-flow-col-3 md:grid-flow-row">
                         <label htmlFor="material" className="text-sm font-semibold leading-6 text-neutral-400">
-                        Insert material
+                        Selecciona un material
                         </label>
                         <select
                         name="material"
@@ -172,18 +172,18 @@ function FormInput({ isLast, polymers }) {
                     </div>
                     <div className="grid-flow-col-3 ml-2">
                         <label htmlFor="percentage" className="text-sm font-semibold leading-6 text-neutral-400">
-                        Insert percentage
+                        Inserta un porcentage
                         </label>
                         <input
                         type="number"
                         className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mr-4"
                         name="percentage"
-                        placeholder="Insert percentage"
+                        placeholder="Inserta un porcentage"
                         />
                     </div>
                 </div>
             </div>
-            <span>{isLast ? null : <img src={plus} className="w-9" alt="Polimer plus" />}</span>
+            <span>{isLast ? null : <img src={plus} className=" w-7" alt="Polimer plus" />}</span>
         </>
     );
 }

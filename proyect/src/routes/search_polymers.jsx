@@ -3,6 +3,8 @@ import axios from 'axios';
 import FondoAzul from "../../components/backg";
 import Navbar_ from "../../components/nbar";
 import Search from "../../components/search";
+import Footer from "../../components/footer";
+
 
 class Vista5 extends Component {
   constructor(props) {
@@ -85,6 +87,7 @@ class Vista5 extends Component {
     const {data,openIndex, subOpenIndex} = this.state;
 
     return (
+      <>
       <div className="min-h-screen">
         <FondoAzul />
         <Navbar_ />
@@ -149,10 +152,16 @@ class Vista5 extends Component {
               </div>
             </div>
           ) : (
-            <p className="text-white mt-4">Loading...</p>
+            <div className="flex justify-center items-center">
+                  <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent border-white align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" role="status">
+                    <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+                  </div>
+                </div>
           )}
         </section>
       </div>
+      <Footer/>
+      </>
     );
   }
 }

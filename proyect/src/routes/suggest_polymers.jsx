@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import FondoAzul from "../../components/backg";
 import Navbar_ from "../../components/nbar";
+import Footer from "../../components/footer";
 import axios from 'axios';
 
 class Vista4 extends Component {
@@ -46,6 +47,7 @@ class Vista4 extends Component {
 
   render() {
     return (
+      <>
       <div className="min-h-screen">
         <FondoAzul />
         <Navbar_ />
@@ -88,6 +90,8 @@ class Vista4 extends Component {
           )}
         </section>
       </div>
+      <Footer/>
+    </>
     );
   }
 }
