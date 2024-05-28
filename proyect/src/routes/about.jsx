@@ -7,7 +7,7 @@ const About = () => {
         <FondoAzul />
         <Navbar_ />
         <div className="flex flex-col md:flex-row justify-center md:gap-20">
-            <div className="bg-white p-6 flex flex-col md:h-96 shadow-lg relative pt-16 rounded-lg mb-8 md:mb-0">
+            <div className="mt-8 bg-white p-6 flex flex-col md:h-96 shadow-lg relative pt-16 rounded-lg mb-8 md:mb-0">
                 <h1 className="text-2xl font-bold text-center text-blue-400 mb-4">Hecho por:</h1>
                 <ul className="list-disc list-inside">
                     <li>Andrés Juan Ramírez Torrez</li>
@@ -17,7 +17,7 @@ const About = () => {
                     <li>Sahir Francisco Segura Serrano</li>
                 </ul>
             </div>
-            <div className="bg-white p-6 flex flex-col md:h-96 shadow-lg relative pt-16 rounded-lg w-full md:w-96">
+            <div className="mt-8 bg-white p-6 flex flex-col md:h-96 shadow-lg relative pt-16 rounded-lg w-full md:w-96">
                 <h1 className="text-2xl font-bold text-center text-blue-400 mb-4">Cliente:</h1>
                 <ul className="list-disc list-inside">
                     <li>Mary Judith Arias Tapia</li>
