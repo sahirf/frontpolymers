@@ -17,6 +17,8 @@ export default function Navbar_() {
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Herramienta Virtual Para Mezcla De Polímeros</span>
             <img className="h-8 w-auto" src="https://d11jve6usk2wa9.cloudfront.net/platform/31066/assets/logo.png" alt="Logo UTB" />
+            <p className="text-white"><strong>Herramienta de Software para Sistema de Análisis de Polímeros</strong><br/> <small>Programa de ingeniería Química <br/> Semillero de Investigación en Polímeros y Compuestos - SIPYC </small></p>
+
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -39,9 +41,6 @@ export default function Navbar_() {
           <Link to="/suggest_polymers" className="text-sm font-semibold leading-6 text-white">
             Sugerencia de Polímeros
           </Link>
-          <Link to="/about" className="text-sm font-semibold leading-6 text-white">
-            Acerca de
-          </Link>
         </Popover.Group>
       </nav>
       {/* AQUI EMPIEZA VISTA DE CELULAR  */}
@@ -58,6 +57,8 @@ export default function Navbar_() {
                 src="https://d11jve6usk2wa9.cloudfront.net/platform/31066/assets/logo.png"
                 alt="Logo UTB"
               />
+              <p className="text-black"><strong>Herramienta de Software para Sistema de Análisis de Polímeros</strong><br/> <small>Programa de ingeniería Química <br/> Semillero de Investigación en Polímeros y Compuestos - SIPYC </small></p>
+
             </Link>
             <button
               type="button"
@@ -89,9 +90,7 @@ export default function Navbar_() {
                 >
                   Sugerencia de Polímeros
                 </Link>
-                <Link to="/about" className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-            Acerca de
-          </Link>
+                
               </div>
 
             </div>
