@@ -73,7 +73,9 @@ class Search extends Component {
           responseMessage: `
             <h1><strong><em><font size=5>${name}</font></em></strong></h1>
             <hr>
+            </br>
             ${description}
+            </br>
             <h2><strong>Propiedades</strong></h2>
             <ul>
               <li>Densidad: ${properties.densidad}</li>
@@ -85,7 +87,6 @@ class Search extends Component {
             ${types}
             <h2><strong>Usos</strong></h2>
             ${uses}
-            <h2><strong>Usos</strong></h2>
           `,
           loading: false,
           errorMessage: ''
